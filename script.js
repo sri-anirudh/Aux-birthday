@@ -268,7 +268,7 @@ function addBirthdaySuprise() {
                 animation: bounceIn 1s ease;
             ">
                 <h2 style="margin-bottom: 15px; font-size: 2rem;">🎉 Surprise! 🎉</h2>
-                <p style="margin-bottom: 20px; font-size: 1.2rem;">Happy Birthday, Akshita!</p>
+                <p style="margin-bottom: 20px; font-size: 1.2rem;">Happy Birthday, Akshi pakshi!</p>
                 <button onclick="this.parentElement.parentElement.remove()" style="
                     background: white;
                     color: #667eea;
