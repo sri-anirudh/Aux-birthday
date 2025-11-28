@@ -290,16 +290,35 @@ body {
     height: 100%;
     opacity: 0;
     transition: opacity 0.8s ease-in-out;
+    overflow: hidden;
 }
 
 .slide.active {
     opacity: 1;
 }
 
-.slide img {
+.slide::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
     width: 100%;
     height: 100%;
-    object-fit: cover;
+    background-image: var(--bg-image);
+    background-size: cover;
+    background-position: center;
+    filter: blur(20px);
+    transform: scale(1.1);
+    z-index: 1;
+}
+
+.slide img {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    z-index: 3;
+    background: transparent;
 }
 
 .slide-caption {
@@ -307,11 +326,15 @@ body {
     bottom: 0;
     left: 0;
     right: 0;
-    background: linear-gradient(transparent, rgba(0,0,0,0.8));
+    background: linear-gradient(transparent, rgba(0,0,0,0.9));
     color: white;
-    padding: 40px 30px 20px;
+    padding: 50px 30px 25px;
     font-size: 1.2rem;
     text-align: center;
+    z-index: 10;
+    font-weight: 500;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.7);
+    backdrop-filter: blur(5px);
 }
 
 .nav-arrow {
@@ -344,31 +367,41 @@ body {
 }
 
 .slide-indicators {
-    position: absolute;
-    bottom: 20px;
-    left: 50%;
-    transform: translateX(-50%);
+    position: relative;
+    margin-top: 20px;
     display: flex;
-    gap: 10px;
-    z-index: 10;
+    gap: 6px;
+    justify-content: center;
+    flex-wrap: wrap;
+    padding: 15px 20px;
+    background: rgba(255,255,255,0.9);
+    border-radius: 25px;
+    backdrop-filter: blur(10px);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .indicator {
-    width: 12px;
-    height: 12px;
+    width: 8px;
+    height: 8px;
     border-radius: 50%;
-    background: rgba(255,255,255,0.5);
+    background: rgba(102,126,234,0.4);
     cursor: pointer;
     transition: all 0.3s ease;
+    flex-shrink: 0;
 }
 
 .indicator.active {
-    background: white;
-    transform: scale(1.2);
+    background: #667eea;
+    transform: scale(1.4);
+    box-shadow: 0 0 8px rgba(102,126,234,0.5);
 }
 
 .indicator:hover {
-    background: rgba(255,255,255,0.8);
+    background: rgba(102,126,234,0.7);
+    transform: scale(1.1);
 }
 
 /* Birthday Message Section */
@@ -459,6 +492,240 @@ body {
     top: 60%;
     right: 20%;
     animation-delay: 2s;
+}
+
+/* Career Gift Section */
+.career-gift {
+    padding: 100px 0;
+    background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+}
+
+.gift-intro {
+    text-align: center;
+    margin-bottom: 60px;
+}
+
+.gift-message {
+    font-size: 1.3rem;
+    line-height: 1.8;
+    color: #555;
+    max-width: 800px;
+    margin: 0 auto;
+    background: white;
+    padding: 40px;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+}
+
+.career-paths {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
+    gap: 40px;
+    margin-bottom: 60px;
+}
+
+.career-path {
+    background: white;
+    border-radius: 20px;
+    padding: 40px;
+    box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+    transition: transform 0.3s ease;
+}
+
+.career-path:hover {
+    transform: translateY(-10px);
+}
+
+.sde-path {
+    border-left: 6px solid #ff6b6b;
+}
+
+.mba-path {
+    border-left: 6px solid #4ecdc4;
+}
+
+.path-header {
+    margin-bottom: 30px;
+}
+
+.path-header h3 {
+    font-size: 1.8rem;
+    color: #333;
+    margin-bottom: 10px;
+}
+
+.path-label {
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    color: white;
+    padding: 8px 15px;
+    border-radius: 20px;
+    font-size: 0.9rem;
+    font-weight: 500;
+}
+
+.resource-card {
+    border: 2px solid #f0f0f0;
+    border-radius: 15px;
+    padding: 30px;
+    margin-bottom: 20px;
+}
+
+.resource-header {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 25px;
+}
+
+.resource-logo {
+    width: 40px;
+    height: 40px;
+    border-radius: 8px;
+}
+
+.resource-header h4 {
+    font-size: 1.4rem;
+    color: #333;
+    margin-bottom: 5px;
+}
+
+.resource-subtitle {
+    color: #666;
+    font-size: 1rem;
+}
+
+.credentials {
+    background: #f8f9ff;
+    padding: 20px;
+    border-radius: 10px;
+    margin-bottom: 25px;
+}
+
+.cred-item {
+    margin-bottom: 10px;
+    font-size: 1rem;
+}
+
+.cred-item code {
+    background: #e1e8ff;
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-family: 'Monaco', 'Courier New', monospace;
+    color: #667eea;
+}
+
+.cred-item a {
+    color: #667eea;
+    text-decoration: none;
+}
+
+.cred-item a:hover {
+    text-decoration: underline;
+}
+
+.action-plan h5 {
+    color: #333;
+    margin-bottom: 20px;
+    font-size: 1.2rem;
+}
+
+.plan-timeline {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+}
+
+.plan-day {
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    border-left: 4px solid #667eea;
+}
+
+.day-label {
+    display: block;
+    font-weight: 600;
+    color: #667eea;
+    margin-bottom: 15px;
+    font-size: 1.1rem;
+}
+
+.plan-day ul {
+    list-style: none;
+    padding: 0;
+}
+
+.plan-day li {
+    padding: 8px 0;
+    padding-left: 20px;
+    position: relative;
+    color: #555;
+    line-height: 1.5;
+}
+
+.plan-day li::before {
+    content: '✓';
+    position: absolute;
+    left: 0;
+    color: #667eea;
+    font-weight: bold;
+}
+
+.decision-guide {
+    background: white;
+    padding: 40px;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    text-align: center;
+}
+
+.decision-guide h3 {
+    color: #333;
+    margin-bottom: 25px;
+    font-size: 1.8rem;
+}
+
+.guide-content p {
+    font-size: 1.1rem;
+    margin-bottom: 20px;
+    color: #555;
+}
+
+.reflection-questions {
+    text-align: left;
+    max-width: 600px;
+    margin: 0 auto 30px;
+    list-style: none;
+    padding: 0;
+}
+
+.reflection-questions li {
+    padding: 12px 0;
+    padding-left: 30px;
+    position: relative;
+    color: #555;
+    line-height: 1.6;
+    font-size: 1.1rem;
+}
+
+.reflection-questions li::before {
+    content: '🤔';
+    position: absolute;
+    left: 0;
+}
+
+.family-support {
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    color: white;
+    padding: 25px;
+    border-radius: 10px;
+    margin-top: 20px;
+}
+
+.family-support p {
+    margin: 0;
+    font-size: 1.1rem;
+    line-height: 1.6;
 }
 
 /* Portfolio Section */
@@ -791,6 +1058,34 @@ footer {
     
     .section-title {
         font-size: 2.2rem;
+    }
+    
+    /* Career section responsive */
+    .career-paths {
+        grid-template-columns: 1fr;
+        gap: 30px;
+    }
+    
+    .career-path {
+        padding: 30px 20px;
+    }
+    
+    .resource-card {
+        padding: 25px 20px;
+    }
+    
+    .plan-timeline {
+        grid-template-columns: 1fr;
+        gap: 15px;
+    }
+    
+    .gift-message {
+        padding: 30px 25px;
+        font-size: 1.1rem;
+    }
+    
+    .decision-guide {
+        padding: 30px 25px;
     }
 }
 

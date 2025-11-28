@@ -9,6 +9,7 @@ document.addEventListener('DOMContentLoaded', function() {
     initializeSlideshow();
     initializeAnimations();
     initializeSkillBars();
+    setupBlurredBackgrounds();
 });
 
 // Initialize slideshow functionality
@@ -232,6 +233,19 @@ document.addEventListener('touchend', function(e) {
     startX = 0;
     startY = 0;
 });
+
+// Setup blurred backgrounds for slides
+function setupBlurredBackgrounds() {
+    const slides = document.querySelectorAll('.slide');
+    
+    slides.forEach(slide => {
+        const img = slide.querySelector('img');
+        if (img) {
+            // Set the background image for the blurred effect
+            slide.style.setProperty('--bg-image', `url('${img.src}')`);
+        }
+    });
+}
 
 // Add birthday surprise animation on page load
 function addBirthdaySuprise() {
